@@ -4,6 +4,12 @@ import scripts.nltkmodules
 import os
 from bertopic import BERTopic
 
+import nltk
+
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+
 st.title("Twitter Topic Modeling")
 st.image("./images/Twitter-logo.png")
 
