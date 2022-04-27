@@ -12,7 +12,7 @@ Project by Leo Corelli
 
 ## About
 
-This project pulls in real-time data from the Twitter API and uses a sentence transformer model, UMAP (non-linear dimension reduction algorithm) , density-based clustering, and class-based TF-IDF to cluster tweets on a specific topic into relevant subtopics for enhanced and actionable insight.
+This project pulls in real-time data from the Twitter API and uses a sentence transformer model, UMAP (non-linear dimension reduction algorithm) , density-based clustering, and class-based TF-IDF (all packaged together in BERTopic python library) to cluster tweets on a specific topic into relevant subtopics for enhanced and actionable insight.
 
 ## How it works
 
