@@ -27,7 +27,7 @@ if term:
     processed_tweets = clean_tweets(tweets) # stop words removed, lemmatized, removed @'s and web links
     
     topic_model = BERTopic()
-    topics, probs = topic_model.fit_transform(processed_tweets["tweet"])
+    topics, probs = topic_model.fit_transform(processed_tweets["tweet"]) # do topic modeling on the tweets
     info = topic_model.get_topic_info()
 
     clusters = get_clusters(info)
@@ -37,7 +37,7 @@ if term:
     pairwise_df = pd.concat([tweets["tweet"], processed_tweets["tweet"]],axis=1)
     pairwise_df.columns = ["original_tweet","cleaned_tweet"]
 
-    for i in range(clusters.shape[0]):
+    for i in range(clusters.shape[0]): # this for loop iterates through variable length cluster results and neatly displays them using the streamlit framework
         st.markdown("## **"+f"Topic {i+1} (" + str(clusters["Count"].iloc[i]) + " tweets): " + clusters["clean_clusters"].iloc[i][0] + ", " + clusters["clean_clusters"].iloc[i][1] + ", " + clusters["clean_clusters"].iloc[i][2] + ", " + clusters["clean_clusters"].iloc[i][3] + "**")
         for j in range(len(rep_docs[i])):
             st.markdown("- " + pairwise_df[pairwise_df["cleaned_tweet"]==rep_docs[i][j]]["original_tweet"].iloc[0])

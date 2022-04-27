@@ -4,6 +4,9 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
 def get_tweets(term, max_tweets=100):
+    '''
+    Calls twitter api and returns max_tweets number of tweets about topic "term".
+    '''
     credentials = load_credentials(env_overwrite=True)
     query = gen_request_parameters(f"{term} -is:retweet -is:reply lang:en", results_per_call=100, granularity=None)
     tweets = collect_results(query, max_tweets = max_tweets, result_stream_args=credentials)
@@ -29,6 +32,9 @@ def convert_to_df(messy_tweets):
     return df
 
 def clean_tweets(tweets):
+    '''
+    Cleans tweets by removing stop words, user tags (ex: @jack), and web links (ex: https://). Then lemmatizes and turns everything lower case.
+    '''
     clean = tweets.copy()
     stop_words = set(stopwords.words('english'))
     wordnet_lemmatizer = WordNetLemmatizer()
@@ -36,6 +42,9 @@ def clean_tweets(tweets):
     return clean
 
 def get_clusters(info):
+    '''
+    Cleans cluster titles for display and removes outliers.
+    '''
     
     clusters = info.copy()
     clusters.sort_values(by="Topic")
