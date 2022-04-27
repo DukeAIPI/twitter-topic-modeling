@@ -1,3 +1,7 @@
+# Leo's test files
+trial_streamlit.py
+data.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

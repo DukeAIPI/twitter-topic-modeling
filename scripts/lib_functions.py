@@ -1,7 +1,6 @@
 import pandas as pd
 from searchtweets import load_credentials, gen_request_parameters, collect_results
 from nltk.corpus import stopwords
-import string 
 from nltk.stem import WordNetLemmatizer
 
 def get_tweets(term, max_tweets=100):
@@ -32,7 +31,22 @@ def convert_to_df(messy_tweets):
 def clean_tweets(tweets):
     clean = tweets.copy()
     stop_words = set(stopwords.words('english'))
-    punctuations = string.punctuation
     wordnet_lemmatizer = WordNetLemmatizer()
-    clean["tweet"] = clean["tweet"].apply(lambda x: ' '.join(wordnet_lemmatizer.lemmatize(word).lower().strip() for word in x.split() if word not in stop_words and word[0]!="@" and word[:5]!="https"))
+    clean["tweet"] = clean["tweet"].apply(lambda x: ' '.join(wordnet_lemmatizer.lemmatize(word).lower().strip() for word in x.split() if word.lower() not in stop_words and word[0]!="@" and word[:5]!="https"))
     return clean
+
+def get_clusters(info):
+    
+    clusters = info.copy()
+    clusters.sort_values(by="Topic")
+    
+    
+    clusters["clean_clusters"] = 0
+    
+    for i in range(clusters.shape[0]):
+        clusters["clean_clusters"].iloc[i] = clusters["Name"].iloc[i].split("_")[1:]
+        
+    clusters = clusters[clusters["Topic"]!=-1] # remove unclustered items
+    clusters = clusters.reset_index(drop=True)
+    
+    return clusters
