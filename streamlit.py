@@ -17,6 +17,8 @@ st.image("./images/Twitter-logo.png")
 
 st.write("Let's find out what people are actually saying about a given topic! This microservice is going to pull the 1000 most recent tweets on a topic of your choice and then use machine learning to cluster them and present back to you the relevant subtopics, as well as representative tweets for each of those subtopics.")
 
+st.write("Disclaimer: This project utilizes unsupervised learning, which is never as good as supervised learning. Due to this inherent uncertainty, these results are subject to user interpretation and should not be considered definitively correct.")
+
 term = st.text_input("Term you would like to search:", placeholder="Ex: 'Ukraine'")
 
 if term:
