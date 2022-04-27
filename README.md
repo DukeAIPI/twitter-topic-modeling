@@ -2,7 +2,9 @@
 
 Project by Leo Corelli
 
-Link to project website: https://share.streamlit.io/leocorelli/twitter-topic-modeling/main/streamlit.py
+[Link to project website](https://share.streamlit.io/leocorelli/twitter-topic-modeling/main/streamlit.py)
+
+[Link to demo video](https://duke.box.com/s/uhq7hcukm5c1tb20kmt7kfxrqi7rshpy)
 
 <p align="center">
   <img src="https://github.com/leocorelli/twitter-topic-modeling/blob/main/images/Twitter-logo.png" width="220" /> 
