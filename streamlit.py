@@ -1,6 +1,5 @@
 import streamlit as st
 from scripts.lib_functions import get_tweets, convert_to_df, clean_tweets, get_clusters
-import os
 import pandas as pd
 from bertopic import BERTopic
 
@@ -11,10 +10,14 @@ nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 
-st.title("Twitter Topic Modeling")
+st.title("Twitter Topic Modeling Web Microservice")
+st.header("Using machine learning to gain insight from Twitter data.")
+st.subheader("Project by Leo Corelli")
 st.image("./images/Twitter-logo.png")
 
-term = st.text_input("Term you would like to search:")
+st.write("Let's find out what people are actually saying about a given topic! This microservice is going to pull the 1000 most recent tweets on a topic of your choice and then use machine learning to cluster them and present back to you the relevant subtopics, as well as representative tweets for each of those subtopics.")
+
+term = st.text_input("Term you would like to search:", placeholder="Ex: 'Ukraine'")
 
 if term:
     messy_tweets = get_tweets(term, max_tweets=1000) # search term
@@ -25,7 +28,6 @@ if term:
     topics, probs = topic_model.fit_transform(processed_tweets["tweet"])
     info = topic_model.get_topic_info()
 
-    #st.dataframe(processed_tweets)
     clusters = get_clusters(info)
 
     rep_docs = topic_model.get_representative_docs()
@@ -34,6 +36,6 @@ if term:
     pairwise_df.columns = ["original_tweet","cleaned_tweet"]
 
     for i in range(clusters.shape[0]):
-        st.markdown("## **"+f"Topic {i} (" + str(clusters["Count"].iloc[i]) + " tweets): " + clusters["clean_clusters"].iloc[i][0] + ", " + clusters["clean_clusters"].iloc[i][1] + ", " + clusters["clean_clusters"].iloc[i][2] + ", " + clusters["clean_clusters"].iloc[i][3] + "**")
+        st.markdown("## **"+f"Topic {i+1} (" + str(clusters["Count"].iloc[i]) + " tweets): " + clusters["clean_clusters"].iloc[i][0] + ", " + clusters["clean_clusters"].iloc[i][1] + ", " + clusters["clean_clusters"].iloc[i][2] + ", " + clusters["clean_clusters"].iloc[i][3] + "**")
         for j in range(len(rep_docs[i])):
             st.markdown("- " + pairwise_df[pairwise_df["cleaned_tweet"]==rep_docs[i][j]]["original_tweet"].iloc[0])
