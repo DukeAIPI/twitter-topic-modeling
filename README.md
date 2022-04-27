@@ -28,6 +28,11 @@ This project pulls in real-time data from the Twitter API and uses a sentence tr
   - “Keeps a significant portion of the high-dimensional local structure in lower dimensionality”
 
 **3. HDBSCAN clustering (Density-based clustering)**
+
+<p align="left">
+  <img src="https://github.com/leocorelli/twitter-topic-modeling/blob/main/images/dbscan.png" width="350" /> 
+</p>
+
   - Does not require a pre-determined set number of clusters
   - Maintains a lot of local structure (doesn’t force into circular clusters)
   - Does not force data points to clusters as it considers them outliers
