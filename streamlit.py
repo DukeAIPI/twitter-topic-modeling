@@ -19,7 +19,7 @@ st.write("Let's find out what people are actually saying about a given topic! Th
 
 st.write("Disclaimer: This project utilizes unsupervised learning, which is never as good as supervised learning. Due to this inherent uncertainty, these results are subject to user interpretation and should not be considered definitively correct.")
 
-term = st.text_input("Term you would like to search:", placeholder="Ex: 'Ukraine'")
+term = st.text_input("Term you would like to search:", placeholder="Ex: 'Economy' or 'JetBlue'")
 
 if term:
     messy_tweets = get_tweets(term, max_tweets=1000) # search term
