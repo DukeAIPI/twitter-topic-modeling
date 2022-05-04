@@ -48,8 +48,8 @@ This project pulls in real-time data from the Twitter API and uses a sentence tr
 - Go to [project link](https://share.streamlit.io/leocorelli/twitter-topic-modeling/main/streamlit.py)
 - Type term into the search bar and click enter!
 
-## Credit
-A special thank you to Maarten Grootendorst and his amazing work in creating the BERTopic library. Additionally, a special thank you to Jon Reifschneider of Duke University for his amazing teaching this semester in AIPI 540.
+## Citation
+A special thank you to Maarten Grootendorst and his amazing work in creating the BERTopic library.
 ```
 @misc{grootendorst2020bertopic,
   author       = {Maarten Grootendorst},
