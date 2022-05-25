@@ -3,7 +3,7 @@ runtime: python3
 build:
   commands:
     build:
-      - yum install gcc-c++
+      - yum -y install gcc-c++
       - pip install -r requirements.txt
 run: 
   network: 
