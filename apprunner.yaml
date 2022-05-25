@@ -3,8 +3,7 @@ runtime: python3
 build:
   commands:
     build:
-      - apt-get install -y sudo
-      - sudo apt-get install gcc
+      - yum install gcc-c++
       - pip install -r requirements.txt
 run: 
   network: 
