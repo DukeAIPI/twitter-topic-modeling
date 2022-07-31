@@ -5,11 +5,20 @@ from bertopic import BERTopic
 
 import nltk
 
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+@st.cache(allow_output_mutation=True)
+def load_models():
+    '''Downloads NLTK packages needed for NLP preprocessing steps, as well as BERTopic model.'''
+    nltk.download('stopwords')
+    nltk.download('punkt')
+    nltk.download('wordnet')
+    nltk.download('omw-1.4')
+    topic_model = BERTopic() # BERTopic model to return
+    
+    return topic_model
 
+topic_model = load_models()
+
+# Streamlit (frontend) code begins here:
 st.title("Twitter Topic Modeling Web Microservice")
 st.header("Using machine learning to gain insight from Twitter data.")
 st.subheader("Project by Leo Corelli")
@@ -24,7 +33,6 @@ if term:
     tweets = convert_to_df(messy_tweets) # messy tweets
     processed_tweets = clean_tweets(tweets) # stop words removed, lemmatized, removed @'s and web links
     
-    topic_model = BERTopic()
     topics, probs = topic_model.fit_transform(processed_tweets["tweet"]) # do topic modeling on the tweets
     info = topic_model.get_topic_info()
 
