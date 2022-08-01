@@ -24,12 +24,12 @@ st.header("Using machine learning to gain insight from Twitter data.")
 st.subheader("Project by Leo Corelli")
 st.image("./images/Twitter-logo.png")
 
-st.write("Let's find out what people are actually saying about a given topic! This microservice is going to pull the 1000 most recent tweets on a topic of your choice and then use machine learning to cluster them and present back to you the relevant subtopics, as well as representative tweets for each of those subtopics.")
+st.write("Let's find out what people are actually saying about a given topic! This microservice is going to pull the 1500 most recent tweets on a topic of your choice and then use machine learning to cluster them and present back to you the relevant subtopics, as well as representative tweets for each of those subtopics.")
 
 term = st.text_input("Term you would like to search:", placeholder="Ex: 'Economy' or 'JetBlue'")
 
 if term:
-    messy_tweets = get_tweets(term, max_tweets=1000) # search term
+    messy_tweets = get_tweets(term, max_tweets=1500) # search term
     tweets = convert_to_df(messy_tweets) # messy tweets
     processed_tweets, tweets = clean_tweets(tweets) # stop words removed, lemmatized, removed @'s and web links
     
@@ -42,6 +42,8 @@ if term:
 
     pairwise_df = pd.concat([tweets["tweet"], processed_tweets["tweet"]],axis=1)
     pairwise_df.columns = ["original_tweet","cleaned_tweet"]
+
+    pairwise_df["original_tweet"] = pairwise_df["original_tweet"].replace("\n",' ', regex=True)
 
     for i in range(clusters.shape[0]): # this for loop iterates through variable length cluster results and neatly displays them using the streamlit framework
         st.markdown("## **"+f"Topic {i+1} (" + str(clusters["Count"].iloc[i]) + " tweets): " + clusters["clean_clusters"].iloc[i][0] + ", " + clusters["clean_clusters"].iloc[i][1] + ", " + clusters["clean_clusters"].iloc[i][2] + ", " + clusters["clean_clusters"].iloc[i][3] + "**")
