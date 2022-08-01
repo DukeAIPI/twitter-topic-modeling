@@ -1,9 +1,10 @@
-FROM python:3.8-slim
+FROM --platform=linux/amd64 python:3.8
 
 WORKDIR /app
-COPY . /app
-RUN apt-get update && apt-get install -y build-essential
+COPY requirements.txt /app
 RUN pip install -r requirements.txt
+
+COPY . /app
 EXPOSE 8501
 ENTRYPOINT ["streamlit","run"]
 CMD ["streamlit.py"]
