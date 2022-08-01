@@ -31,7 +31,7 @@ term = st.text_input("Term you would like to search:", placeholder="Ex: 'Economy
 if term:
     messy_tweets = get_tweets(term, max_tweets=1000) # search term
     tweets = convert_to_df(messy_tweets) # messy tweets
-    processed_tweets = clean_tweets(tweets) # stop words removed, lemmatized, removed @'s and web links
+    processed_tweets, tweets = clean_tweets(tweets) # stop words removed, lemmatized, removed @'s and web links
     
     topics, probs = topic_model.fit_transform(processed_tweets["tweet"]) # do topic modeling on the tweets
     info = topic_model.get_topic_info()

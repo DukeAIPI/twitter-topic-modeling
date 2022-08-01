@@ -36,10 +36,15 @@ def clean_tweets(tweets):
     Cleans tweets by removing stop words, user tags (ex: @jack), and web links (ex: https://). Then lemmatizes and turns everything lower case.
     '''
     clean = tweets.copy()
+    original_tweets = tweets.copy()
     stop_words = set(stopwords.words('english'))
     wordnet_lemmatizer = WordNetLemmatizer()
     clean["tweet"] = clean["tweet"].apply(lambda x: ' '.join(wordnet_lemmatizer.lemmatize(word).lower().strip() for word in x.split() if word.lower() not in stop_words and word[0]!="@" and word[:5]!="https"))
-    return clean
+    clean = clean.drop_duplicates()
+    original_tweets = original_tweets.filter(items=clean.index,axis=0)
+    clean = clean.reset_index(drop=True)
+    original_tweets = original_tweets.reset_index(drop=True)
+    return clean, original_tweets
 
 def get_clusters(info):
     '''
