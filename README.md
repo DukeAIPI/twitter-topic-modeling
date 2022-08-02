@@ -2,7 +2,7 @@
 
 Project by Leo Corelli
 
-[Link to project website](https://share.streamlit.io/leocorelli/twitter-topic-modeling/main/streamlit.py)
+[Link to project website](https://twitter-topic-modeling.azurewebsites.net/)
 
 [Link to demo video](https://duke.box.com/s/uhq7hcukm5c1tb20kmt7kfxrqi7rshpy)
 
@@ -45,7 +45,7 @@ This project pulls in real-time data from the Twitter API and uses a sentence tr
 
 
 ## How to run
-- Go to [project link](https://share.streamlit.io/leocorelli/twitter-topic-modeling/main/streamlit.py)
+- Go to [project link](https://twitter-topic-modeling.azurewebsites.net/)
 - Type term into the search bar and click enter!
 
 ## Citation
